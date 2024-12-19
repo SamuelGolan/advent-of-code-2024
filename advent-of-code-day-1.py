@@ -2,7 +2,7 @@
 Advent of code 2024 Day 1
 """
 
-with open("inputs/day-1-input-1", "r") as f:
+with open("inputs/day-1-input", "r") as f:
     values = f.read().split()
 list_1 = sorted([int(values[i]) for i in range(0, len(values), 2)])
 list_2 = sorted([int(values[i]) for i in range(1, len(values), 2)])
