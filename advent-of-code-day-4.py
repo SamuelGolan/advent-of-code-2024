@@ -61,12 +61,11 @@ temp = [
     'MAMMMXMMMM',
     'MXMXAXMASX',
 ]
-
 match_count = 0
 temp = [list(row) for row in temp]
 
-
 with open("inputs/day-4-input", "r") as f:
-    input = [list(row) for row in f.readlines()]
+    input = [list(row.strip()) for row in f.readlines()]
+
 answer_1 = input_search(input)
 print(f"{answer_1=}")
