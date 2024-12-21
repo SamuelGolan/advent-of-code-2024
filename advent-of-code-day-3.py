@@ -1,5 +1,5 @@
 """
-Advent of code 2024 Day 2
+Advent of code 2024 Day 3
 """
 
 import re
