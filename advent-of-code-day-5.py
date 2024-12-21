@@ -29,7 +29,7 @@ temp = """47|53
 75,29,13
 75,97,47,61,53
 61,13,29
-97,13,75,29,4"""
+97,13,75,29,47"""
 
 with open("inputs/day-5-input", "r") as f:
     input = f.read()
@@ -57,14 +57,27 @@ def check_update(rules: dict, update: list[str]) -> int:
     return int(update[len(update) // 2])
 
 
+def correct_update(rules: dict, update: list[str]) -> int:
+    disallowed_pages = []
+    for count, page in enumerate(update):
+        if page in disallowed_pages:
+            return correct_update(rules, update[: count - 1] + [update[count]] + [update[count - 1]] + update[count + 1:])
+        if page in rules:
+            disallowed_pages.extend(rules[page])
+    return int(update[len(update) // 2])
+
+
 def main():
     rules, updates = get_rules_and_updates(input)
-    page_number_sum = 0
+    answer_1 = 0
+    answer_2 = 0
     for update in updates:
-        page_number_sum += check_update(rules, update)
-    print(page_number_sum)
-
-print(get_rules_and_updates(temp))
+        result = check_update(rules, update)
+        answer_1 += result
+        if check_update(rules, update) == 0:
+            answer_2 += correct_update(rules, update)
+    print(f"{answer_1=}")
+    print(f"{answer_2=}")
 
 
 if __name__ == "__main__":
